@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Aashitha P. S. - Ayurvedic Physician</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a73e8;
+            --primary-light: #e8f0fe;
+            --secondary: #34a853;
+            --accent: #f9ab00;
+            --text: #333;
+            --light: #f8f9fa;
+            --border: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background-color: #f9fbfd;
+            line-height: 1.6;
+            padding: 20px;
+            background: linear-gradient(to bottom, #e6f0ff, #ffffff 20%);
+        }
+        
+        .cv-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #e6f0ff, #d1e5fe);
+            padding: 40px 50px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            flex: 1;
+            z-index: 2;
+        }
+        
+        .header-graphics {
+            width: 45%;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 2;
+        }
+        
+        .chart-container {
+            width: 100%;
+            max-width: 300px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .header-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,138.7C672,128,768,128,864,149.3C960,171,1056,213,1152,208C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #555;
+            max-width: 600px;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 30px 50px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        section:last-child {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            position: relative;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 70px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        /* Profile Section */
+        .profile-text {
+            font-size: 1.05rem;
+            text-align: justify;
+            line-height: 1.8;
+        }
+        
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .expertise-card {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        
+        .expertise-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .expertise-card h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .expertise-card ul {
+            padding-left: 20px;
+            color: #555;
+        }
+        
+        .expertise-card li {
+            margin-bottom: 5px;
+        }
+        
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 30px;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary-light);
+            transition: var(--transition);
+        }
+        
+        .experience-item:hover {
+            border-left-color: var(--primary);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .job-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .company {
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .duration {
+            color: #777;
+            font-size: 0.95rem;
+        }
+        
+        .experience-details {
+            padding-left: 15px;
+        }
+        
+        .experience-details ul {
+            padding-left: 20px;
+        }
+        
+        .experience-details li {
+            margin-bottom: 8px;
+        }
+        
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .education-card {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .education-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .education-card p {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-pill {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .skill-pill:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFade 0.3s ease;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), #0d47a1);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            background: var(--light);
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 30px 20px;
+            }
+            
+            .header-graphics {
+                width: 100%;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            section {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <header>
+            <div class="header-content">
+                <h1>Dr. Aashitha P. S., B.A.M.S.</h1>
+                <div class="contact-info">
+                    <div><i class="fas fa-phone"></i> +91 95670 47342</div>
+                    <div><i class="fas fa-envelope"></i> aashithaps@gmail.com</div>
+                    <div><i class="fas fa-map-marker-alt"></i> Edakochi, Kochi, Kerala, India</div>
+                </div>
+                <div class="tagline">
+                    A profoundly skilled and patient-centric Ayurvedic Physician with over nine years of multifaceted experience.
+                </div>
+            </div>
+            <div class="header-graphics">
+                <div class="chart-container">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+            <div class="header-wave"></div>
+        </header>
+        
+        <section id="profile">
+            <h2>Professional Profile</h2>
+            <p class="profile-text">
+                A profoundly skilled and patient-centric Ayurvedic Physician with over nine years of multifaceted experience, demonstrating excellence across clinical leadership, pharmaceutical quality assurance, and specialized traditional healing arts. My practice is founded on bridging the gap between shastra-based classical Ayurveda and contemporary healthcare needs. I possess a unique combination of skills in managing full-scale clinic operations, ensuring stringent GMP compliance in medicine manufacturing, and administering advanced therapies like Panchakarma and Kalari-based treatments. I am passionately committed to delivering authentic, personalized, and holistic care that empowers patients to achieve long-term wellness.
+            </p>
+        </section>
+        
+        <section id="expertise">
+            <h2>Areas of Expertise</h2>
+            <div class="expertise-grid">
+                <div class="expertise-card" onclick="openModal('Clinical Management', 'Clinic Operations, Staff Recruitment & Leadership, SOP Implementation, Patient Workflow Optimization')">
+                    <h3><i class="fas fa-clinic-medical"></i> Clinical Management</h3>
+                    <ul>
+                        <li>Clinic Operations</li>
+                        <li>Staff Recruitment & Leadership</li>
+                        <li>SOP Implementation</li>
+                        <li>Patient Workflow Optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card" onclick="openModal('Ayurvedic Diagnostics', 'Prakriti/Vikruti Analysis, Nadi Pariksha, Lifestyle Disease Management, Chronic Disorder Treatment')">
+                    <h3><i class="fas fa-stethoscope"></i> Ayurvedic Diagnostics</h3>
+                    <ul>
+                        <li>Prakriti/Vikruti Analysis</li>
+                        <li>Nadi Pariksha</li>
+                        <li>Lifestyle Disease Management</li>
+                        <li>Chronic Disorder Treatment</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card" onclick="openModal('Therapeutic Modalities', 'Panchakarma (Evidence-Based), Rasayana Chikitsa, Kalari & Marma Therapy, Musculoskeletal Treatments')">
+                    <h3><i class="fas fa-spa"></i> Therapeutic Modalities</h3>
+                    <ul>
+                        <li>Panchakarma (Evidence-Based)</li>
+                        <li>Rasayana Chikitsa</li>
+                        <li>Kalari & Marma Therapy</li>
+                        <li>Musculoskeletal Treatments</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card" onclick="openModal('Pharmaceutical Quality', 'Quality Assurance & Control, GMP Compliance, Standardization, Ayurvedic Pharmacology (Dravyaguna)')">
+                    <h3><i class="fas fa-vial"></i> Pharmaceutical Quality</h3>
+                    <ul>
+                        <li>Quality Assurance & Control</li>
+                        <li>GMP Compliance</li>
+                        <li>Standardization</li>
+                        <li>Ayurvedic Pharmacology (Dravyaguna)</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card" onclick="openModal('Patient Care', 'Holistic Counseling & Education, Personalized Regimen Design (Dinacharya), Women\'s Health')">
+                    <h3><i class="fas fa-hand-holding-heart"></i> Patient Care</h3>
+                    <ul>
+                        <li>Holistic Counseling & Education</li>
+                        <li>Personalized Regimen Design (Dinacharya)</li>
+                        <li>Women's Health</li>
+                    </ul>
+                </div>
+                
+                <div class="expertise-card" onclick="openModal('Product Formulation', 'Ayurvedic Skincare & Wellness Product Development, Herbal Formulations')">
+                    <h3><i class="fas fa-mortar-pestle"></i> Product Formulation</h3>
+                    <ul>
+                        <li>Ayurvedic Skincare & Wellness Product Development</li>
+                        <li>Herbal Formulations</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="job-title">Senior Consultant Physician</div>
+                        <div class="company">Parijatak Ayurveda Pvt. Ltd. | Kochi, Kerala</div>
+                    </div>
+                    <div class="duration">July 2023 – Present</div>
+                </div>
+                <div class="experience-details">
+                    <p>As the lead physician, I spearhead the complete operational and clinical management of the Kochi center, driving excellence in both patient care and business administration.</p>
+                    <ul>
+                        <li><strong>Clinical & Operational Leadership:</strong> Direct a team of therapists, junior doctors, and administrative staff. Responsible for the entire clinic's daily functioning, including staff recruitment, training, and performance management.</li>
+                        <li><strong>System Architecture & Implementation:</strong> Successfully architected and deployed new, integrated systems for managing inpatient and outpatient appointments, therapy schedules, and patient records.</li>
+                        <li><strong>Advanced Patient Treatment:</strong> Diagnose and treat a wide spectrum of complex and chronic conditions, including metabolic disorders, autoimmune diseases, musculoskeletal ailments, and gynecological issues.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="job-title">Quality Control Officer</div>
+                        <div class="company">Chandra Ayurveda Pharmacy | Mattanchery, Kerala</div>
+                    </div>
+                    <div class="duration">July 2021 – June 2023</div>
+                </div>
+                <div class="experience-details">
+                    <p>Championed the end-to-end quality assurance lifecycle for a wide range of Ayurvedic pharmaceuticals, ensuring that all products met rigorous standards of safety, purity, and efficacy.</p>
+                    <ul>
+                        <li><strong>GMP & Regulatory Compliance:</strong> Oversaw and enforced strict compliance with Good Manufacturing Practices (GMP) and other regulatory guidelines.</li>
+                        <li><strong>Quality Assurance Protocol:</strong> Managed the standardization of raw materials through rigorous testing, conducted in-process quality checks during manufacturing, and performed final quality analysis of finished goods.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="job-title">Ayurvedic Physician</div>
+                        <div class="company">Lubina Kalari | Edappally, Kerala</div>
+                    </div>
+                    <div class="duration">July 2018 – June 2021</div>
+                </div>
+                <div class="experience-details">
+                    <p>Focused on the application of traditional Kalari-based healing techniques for therapeutic purposes, addressing a range of complex physical ailments.</p>
+                    <ul>
+                        <li><strong>Specialized Marma & Kalari Therapy:</strong> Specialized in administering Kalari-based therapies and Marma treatments to address musculoskeletal injuries, neurological conditions, chronic pain, and sports-related injuries.</li>
+                        <li><strong>Personalized Wellness Regimens:</strong> Conducted in-depth consultations, including detailed Prakriti-Vikruti analysis, to design highly customized treatment protocols, dietary plans, and lifestyle regimens.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="job-title">Resident Medical Officer (RMO)</div>
+                        <div class="company">Vishnu Ayurveda College Hospital | Shoranur, Kerala</div>
+                    </div>
+                    <div class="duration">June 2015 – June 2018</div>
+                </div>
+                <div class="experience-details">
+                    <p>Managed both inpatient and outpatient wings and ensured the smooth functioning of clinical services in a busy teaching hospital.</p>
+                    <ul>
+                        <li><strong>Comprehensive Ward Management:</strong> Managed the Inpatient (IP) and Outpatient (OP) departments, which involved conducting daily patient rounds, formulating and executing treatment plans.</li>
+                        <li><strong>Clinical Treatment & Patient Counseling:</strong> Delivered a broad spectrum of Ayurvedic treatments according to classical protocols. Handled detailed patient counseling and monitored therapeutic progress.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education">
+            <h2>Education & Credentials</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Bachelor of Ayurvedic Medicine and Surgery (B.A.M.S.)</h3>
+                    <p><i class="fas fa-university"></i> Vishnu Ayurveda College, Shoranur</p>
+                    <p><i class="fas fa-calendar"></i> 2014</p>
+                    <p>Affiliated with the University of Calicut</p>
+                    <p>Completed comprehensive training in classical Ayurvedic Samhitas, Dravyaguna, Rasa Shastra, and Agada Tantra.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Higher Secondary Education (12th Grade)</h3>
+                    <p><i class="fas fa-school"></i> Kendriya Vidyalaya, Cochin Port Trust</p>
+                    <p><i class="fas fa-calendar"></i> 2006</p>
+                    <p>Central Board of Secondary Education (CBSE)</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3>Secondary School Education (10th Grade)</h3>
+                    <p><i class="fas fa-school"></i> Kendriya Vidyalaya, Cochin Port Trust</p>
+                    <p><i class="fas fa-calendar"></i> 2004</p>
+                    <p>Central Board of Secondary Education (CBSE)</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="training">
+            <h2>Advanced Training & Certifications</h2>
+            <div class="skills-container">
+                <div class="skill-pill" onclick="openModal('Professional License', 'Registered Medical Practitioner, Travancore Cochin Medical Council')">Professional License</div>
+                <div class="skill-pill" onclick="openModal('Advanced Practical Training in Panchakarma', 'National Research Institute for Panchakarma, Cheruthuruthy')">Advanced Panchakarma Training</div>
+                <div class="skill-pill" onclick="openModal('Certificate in Cosmetic Product Making', 'Vedha Kalpa Cosmetics | 2022')">Cosmetic Product Making</div>
+                <div class="skill-pill" onclick="openModal('Vedha Kalpa Certificate', 'Traditional Ayurvedic practice recognition')">Vedha Kalpa Certificate</div>
+            </div>
+        </section>
+        
+        <section id="languages">
+            <h2>Languages</h2>
+            <div class="skills-container">
+                <div class="skill-pill">Malayalam: Native</div>
+                <div class="skill-pill">English: Fluent</div>
+                <div class="skill-pill">Tamil: Proficient</div>
+                <div class="skill-pill">Hindi: Conversational</div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 Dr. Aashitha P. S. | All rights reserved</p>
+        </footer>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalContent"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize skills chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Clinical Skills', 'Diagnostics', 'Therapeutics', 'Quality Control', 'Patient Care', 'Product Dev'],
+                    datasets: [{
+                        label: 'Expertise Level',
+                        data: [95, 90, 92, 85, 93, 80],
+                        backgroundColor: 'rgba(25, 118, 210, 0.2)',
+                        borderColor: 'rgba(25, 118, 210, 1)',
+                        pointBackgroundColor: 'rgba(25, 118, 210, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(25, 118, 210, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Modal functionality
+        function openModal(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalContent').textContent = content;
+            document.getElementById('infoModal').style.display = 'flex';
+        }
+        
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('infoModal').style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('infoModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
