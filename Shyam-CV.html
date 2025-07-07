@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shyamdeep Moorkoth - Senior Marketing & Operations Leader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Deep Slate Blue */
+            --secondary-color: #3498db; /* Bright Blue */
+            --accent-color: #e74c3c; /* Red Accent */
+            --bg-light: #ecf0f1; /* Light Gray */
+            --text-dark: #34495e; /* Dark Text */
+            --text-light: #7f8c8d; /* Lighter Text */
+            --white: #ffffff;
+            --border-color: #bdc3c7;
+            
+            /* Gradient & Chart Colors */
+            --gradient-start: #2c3e50;
+            --gradient-end: #4a69bd;
+            --chart-color-1: #1abc9c; /* Turquoise */
+            --chart-color-2: #3498db; /* Bright Blue */
+            --chart-color-3: #9b59b6; /* Amethyst */
+            --chart-color-4: #f1c40f; /* Sunflower */
+            --chart-color-5: #e67e22; /* Carrot */
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .montserrat {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .resume-wrapper {
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .resume-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        .left-column {
+            background: linear-gradient(160deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: var(--bg-light);
+            padding: 2.5rem;
+        }
+
+        .right-column {
+            background-color: var(--white);
+            padding: 2.5rem;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            box-shadow: 0 0 25px rgba(255,255,255,0.2);
+        }
+
+        .left-column h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--white);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-item i {
+            color: var(--white);
+            opacity: 0.8;
+            width: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .contact-item:hover i {
+            color: var(--chart-color-4);
+            transform: scale(1.2);
+        }
+        
+        .right-column .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .right-column .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--chart-color-1));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-left: 2px solid var(--border-color);
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -10px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            border: 4px solid var(--white);
+        }
+        .job-title {
+            color: var(--primary-color);
+        }
+        .company-info {
+            color: var(--secondary-color);
+        }
+        
+        .achievement-card {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        .achievement-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+        }
+        
+        .client-logo {
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .print-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        .lang-bar {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 9999px;
+            overflow: hidden;
+            height: 2.25rem; /* Increased height */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .lang-progress {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 9999px;
+            transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+            white-space: nowrap;
+        }
+        .lang-label {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        @media print {
+            body {
+                background-color: var(--white);
+            }
+            .no-print {
+                display: none !important;
+            }
+            .resume-wrapper {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+            }
+            .left-column {
+                background: #ffffff !important;
+                color: var(--text-dark) !important;
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+            }
+            .left-column h3, .contact-item span, .left-column p {
+                 color: var(--text-dark) !important;
+            }
+            .chart-container, .languages-container {
+                display: none;
+            }
+            .right-column {
+                padding: 1.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="py-12 px-4">
+
+    <button onclick="window.print()" class="print-button no-print w-14 h-14 rounded-full shadow-lg flex items-center justify-center">
+        <i class="fas fa-print text-2xl"></i>
+    </button>
+
+    <div class="resume-wrapper max-w-6xl mx-auto bg-white rounded-lg overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-3">
+            
+            <!-- Left Column -->
+            <aside class="left-column">
+                <div class="flex flex-col items-center">
+                    <img src="https://placehold.co/150x150/ffffff/2c3e50?text=SM" alt="Shyamdeep Moorkoth" class="profile-pic">
+                    <h2 class="montserrat text-3xl font-bold mt-6 text-white text-center">SHYAMDEEP MOORKOTH</h2>
+                    <p class="text-lg mt-2 text-center text-gray-300">Senior Marketing & Operations Leader</p>
+                </div>
+
+                <div>
+                    <h3>CONTACT</h3>
+                    <div class="space-y-4">
+                        <a href="tel:+971523284119" class="contact-item flex items-center group">
+                            <i class="fas fa-phone mr-4"></i>
+                            <span class="group-hover:text-yellow-300 transition-colors duration-300">+971 52 328 4119</span>
+                        </a>
+                        <a href="mailto:shyammooorkoth@gmail.com" class="contact-item flex items-center group">
+                            <i class="fas fa-envelope mr-4"></i>
+                            <span class="group-hover:text-yellow-300 transition-colors duration-300">shyammooorkoth@gmail.com</span>
+                        </a>
+                        <div class="contact-item flex items-center">
+                            <i class="fas fa-map-marker-alt mr-4"></i>
+                            <span>Al Qusais, Dubai, UAE</span>
+                        </div>
+                        <a href="https://www.linkedin.com/in/shyamdeep-moorkoth-61126034" target="_blank" class="contact-item flex items-center group">
+                            <i class="fab fa-linkedin-in mr-4"></i>
+                            <span class="group-hover:text-yellow-300 transition-colors duration-300">linkedin.com/in/shyamdeep-m</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3>SKILLS & EXPERTISE</h3>
+                    <canvas id="skillsChart"></canvas>
+                </div>
+
+                <div>
+                    <h3>EDUCATION</h3>
+                    <p class="font-semibold text-lg">Bachelor of Business Administration (BBA)</p>
+                    <p class="text-gray-300">Open University System</p>
+                </div>
+
+                <div>
+                    <h3>CERTIFICATIONS</h3>
+                    <ul class="space-y-2 list-inside">
+                        <li class="flex items-start"><i class="fas fa-certificate text-yellow-300 mt-1 mr-2"></i>ISO 22000:2005 Internal Auditor</li>
+                        <li class="flex items-start"><i class="fas fa-certificate text-yellow-300 mt-1 mr-2"></i>HACCP Level 2 (Highfield, UK)</li>
+                        <li class="flex items-start"><i class="fas fa-certificate text-yellow-300 mt-1 mr-2"></i>Taxation & Auditing</li>
+                    </ul>
+                </div>
+                
+                <div class="languages-container">
+                    <h3>LANGUAGES</h3>
+                    <div class="space-y-4">
+                        <div class="lang-bar">
+                            <div class="lang-progress bg-teal-500" style="width: 98%;">
+                                <span class="lang-label">English - Fluent</span>
+                            </div>
+                        </div>
+                        <div class="lang-bar">
+                            <div class="lang-progress bg-blue-500" style="width: 100%;">
+                                <span class="lang-label">Malayalam - Native</span>
+                            </div>
+                        </div>
+                        <div class="lang-bar">
+                            <div class="lang-progress bg-purple-500" style="width: 85%;">
+                                <span class="lang-label">Hindi - Fluent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Right Column -->
+            <main class="right-column col-span-1 md:col-span-2">
+                <section>
+                    <h3 class="section-title">EXECUTIVE PROFILE</h3>
+                    <p class="leading-relaxed text-text-light">
+                        A visionary and results-oriented Senior Marketing & Operations Leader with an exemplary 30-year career driving growth, profitability, and operational excellence within the highly competitive FMCG, food distribution, and agricultural industries. Possesses a deep, holistic understanding of the entire business lifecycle, from pioneering market entry and strategic planning to executing complex supply chain optimizations. Proven track record of expanding market share across the GCC (Oman, UAE) and delivering substantial revenue growth. An expert in full P&L management, international regulatory compliance (ISO 22000, HACCP), and building and mentoring high-performance, cross-functional teams.
+                    </p>
+                </section>
+
+                <section class="mt-10">
+                    <h3 class="section-title">PROFESSIONAL EXPERIENCE</h3>
+                    <div class="relative">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="text-sm text-text-light">Oct 2023 – Present</p>
+                            <h4 class="montserrat text-xl font-bold job-title">Director – Business Operations</h4>
+                            <p class="font-semibold company-info">Ryzen Intels Mind Pvt Ltd, Kerala, India</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-text-light">
+                                <li>Leading strategic vision for business operations, focusing on client acquisition and new market development.</li>
+                                <li>Orchestrating comprehensive go-to-market strategies and penetrating untapped market segments.</li>
+                                <li>Spearheading successful launches of new food product lines, managing the entire lifecycle.</li>
+                                 <li>Engineering and operationalizing state-of-the-art food production facilities with FSSAI compliance.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="text-sm text-text-light">Aug 2021 – Sep 2023</p>
+                            <h4 class="montserrat text-xl font-bold job-title">Operations Manager</h4>
+                            <p class="font-semibold company-info">Ugragandha Foods, Bengaluru, India</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-text-light">
+                                <li>Oversaw all facets of daily operations for a specialized food processing and distribution company.</li>
+                                <li>Dramatically scaled production capabilities to meet surging market demand and achieve significant revenue growth.</li>
+                                <li>Implemented robust quality control frameworks compliant with international standards (ISO, HACCP).</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="text-sm text-text-light">Jul 2015 – Jan 2021</p>
+                            <h4 class="montserrat text-xl font-bold job-title">General Manager</h4>
+                            <p class="font-semibold company-info">Health Food Marketing & Agricultural Products Co. LLC, Muscat, Oman</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-text-light">
+                                <li>Directed comprehensive agricultural and distribution operations with full P&L responsibility.</li>
+                                <li>Managed a complex global supplier network of over 100 vendors, ensuring strict ISO 22000 compliance.</li>
+                                <li>Authored and executed a strategic business expansion plan that resulted in considerable growth in market share.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <p class="text-sm text-text-light">Oct 2007 – May 2011</p>
+                            <h4 class="montserrat text-xl font-bold job-title">Business Development Manager</h4>
+                            <p class="font-semibold company-info">Jasmine Oasis Trad. & Cont. Co. LLC, Muscat, Oman</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-text-light">
+                                <li>Developed and executed innovative corporate business strategies to expand the company's footprint.</li>
+                                <li>Conducted feasibility studies leading to the successful launch of two profitable new service divisions.</li>
+                                <li>Recipient of the Outstanding Productivity Award for exceptional performance.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="mt-10">
+                    <h3 class="section-title">KEY ACHIEVEMENTS</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="achievement-card p-4">
+                            <h4 class="font-bold text-lg text-primary-color">Strategic Revenue Generation</h4>
+                            <p class="text-text-light mt-1">Consistently delivered substantial growth in sales revenue by architecting and executing sophisticated market expansion strategies.</p>
+                        </div>
+                        <div class="achievement-card p-4">
+                            <h4 class="font-bold text-lg text-primary-color">Operational Transformation</h4>
+                            <p class="text-text-light mt-1">Drove transformative improvements in operational efficiency by re-engineering end-to-end procurement and logistics workflows.</p>
+                        </div>
+                        <div class="achievement-card p-4">
+                            <h4 class="font-bold text-lg text-primary-color">Product Launch Excellence</h4>
+                            <p class="text-text-light mt-1">Masterminded an exceptional track record of successful new product launches by leveraging in-depth market intelligence.</p>
+                        </div>
+                        <div class="achievement-card p-4">
+                            <h4 class="font-bold text-lg text-primary-color">Supply Chain Optimization</h4>
+                            <p class="text-text-light mt-1">Secured significant, sustainable cost savings through strategic global vendor consolidation and masterful negotiation.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mt-10">
+                    <h3 class="section-title">KEY CLIENTS & PARTNERSHIPS</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center text-center">
+                        <div class="client-logo" title="Royal Airforce Oman">
+                            <i class="fas fa-shield-alt text-5xl text-gray-400"></i>
+                            <p class="text-xs mt-2 font-semibold">Royal Airforce Oman</p>
+                        </div>
+                         <div class="client-logo" title="Newrest">
+                            <i class="fas fa-plane-departure text-5xl text-gray-400"></i>
+                            <p class="text-xs mt-2 font-semibold">Newrest (France)</p>
+                        </div>
+                        <div class="client-logo" title="Enventure Global Technology">
+                            <i class="fas fa-cogs text-5xl text-gray-400"></i>
+                             <p class="text-xs mt-2 font-semibold">Enventure (USA)</p>
+                        </div>
+                        <div class="client-logo" title="Larsen & Toubro (L&T)">
+                            <i class="fas fa-industry text-5xl text-gray-400"></i>
+                            <p class="text-xs mt-2 font-semibold">Larsen & Toubro</p>
+                        </div>
+                        <div class="client-logo" title="Galfar Engineering">
+                            <i class="fas fa-hard-hat text-5xl text-gray-400"></i>
+                            <p class="text-xs mt-2 font-semibold">Galfar Engineering</p>
+                        </div>
+                        <div class="client-logo" title="United Catering Co.">
+                            <i class="fas fa-utensils text-5xl text-gray-400"></i>
+                            <p class="text-xs mt-2 font-semibold">United Catering Co.</p>
+                        </div>
+                        <div class="client-logo" title="Alilah Salalah">
+                            <i class="fas fa-hotel text-5xl text-gray-400"></i>
+                            <p class="text-xs mt-2 font-semibold">Alilah Salalah</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="mt-10">
+                     <p class="text-center text-text-light italic">References available upon request.</p>
+                </section>
+
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Skills Radar Chart
+            const skillsCtx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(skillsCtx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Leadership', 
+                        'Operations', 
+                        'Marketing & Sales', 
+                        'Company Setup', 
+                        'Product Launch', 
+                        'Supply Chain'
+                    ],
+                    datasets: [{
+                        label: 'Expertise Level',
+                        data: [95, 98, 92, 97, 96, 94],
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        borderColor: 'rgba(255, 255, 255, 0.8)',
+                        pointBackgroundColor: '#f1c40f',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#f1c40f'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                           display: false
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            },
+                            pointLabels: {
+                                color: '#ffffff',
+                                font: {
+                                    size: 11,
+                                    family: "'Montserrat', sans-serif"
+                                }
+                            },
+                            ticks: {
+                                color: '#ffffff',
+                                backdropColor: 'rgba(0,0,0,0.3)',
+                                stepSize: 20,
+                                font: {
+                                    size: 10
+                                }
+                            },
+                            min: 0,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Animate language bars on scroll
+            const langProgressBars = document.querySelectorAll('.lang-progress');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const targetWidth = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = targetWidth;
+                        }, 200);
+                        observer.unobserve(bar);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            langProgressBars.forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+    </script>
+</body>
+</html>
