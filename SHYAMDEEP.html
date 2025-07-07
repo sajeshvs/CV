@@ -21,6 +21,7 @@
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
             color: #334155;
+            line-height: 1.6;
         }
         
         .resume-container {
@@ -28,6 +29,7 @@
             background: white;
             position: relative;
             overflow: hidden;
+            max-width: 100%;
         }
         
         .resume-container::before {
@@ -43,6 +45,20 @@
             opacity: 0.05;
             z-index: 0;
         }
+        
+        /* Animated gradient background for header */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.header-bg {
+    background: linear-gradient(135deg, #3b82f6, #7c3aed, #3b82f6);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+}
+
         
         .header-bg {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -130,6 +146,17 @@
             transition: width 1s ease-in-out;
         }
         
+        .skill-progress::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
         .skill-progress::after {
             content: "";
             position: absolute;
@@ -147,12 +174,20 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border: 1px solid rgba(123, 97, 255, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         
         .achievement-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(123, 97, 255, 0.15);
             border-color: rgba(123, 97, 255, 0.2);
+        }
+        
+        .achievement-card .flex {
+            height: 100%;
+            align-items: stretch;
         }
         
         .achievement-icon {
@@ -163,17 +198,33 @@
         .client-card {
             background: white;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             border: 1px solid rgba(123, 97, 255, 0.1);
             transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 140px;
         }
         
         .client-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(123, 97, 255, 0.1);
             border-color: rgba(123, 97, 255, 0.3);
+        }
+        
+        .client-card h4 {
+            font-size: 0.9rem;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+        
+        .client-card p {
+            font-size: 0.8rem;
+            line-height: 1.2;
         }
         
         .chart-container {
@@ -241,6 +292,110 @@
             font-size: 0.85rem;
             margin: 0.2rem;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .expertise-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Glassmorphism cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        /* Animated skill bars */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* Hover effects for cards */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Enhanced mobile menu */
+        .mobile-menu-icon {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-icon {
+                display: block;
+            }
+        }
+
+        /* Improved print styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0.5cm;
+            }
+            
+            .resume-container {
+                page-break-inside: avoid;
+            }
+            
+            .timeline-item, .achievement-card {
+                page-break-inside: avoid;
+            }
+            
+            .header-bg {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+        .mobile-optimized {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Touch interaction styles */
+        .touch-active {
+            transform: scale(0.98) !important;
+            transition: transform 0.1s ease !important;
+        }
+        
+        /* Performance optimizations */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .resume-container,
+        .achievement-card,
+        .client-card {
+            will-change: transform;
         }
         
         @media print {
@@ -256,15 +411,204 @@
                 box-shadow: none;
             }
         }
+        
+        /* Mobile Responsive Improvements */
+        @media (max-width: 768px) {
+            .py-8 {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            .px-4 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .header-bg {
+                padding: 1.5rem !important;
+            }
+            
+            .header-bg h1 {
+                font-size: 2rem !important;
+                line-height: 1.2;
+            }
+            
+            .header-bg h2 {
+                font-size: 1.125rem !important;
+                line-height: 1.4;
+            }
+            
+            .p-8 {
+                padding: 1.5rem !important;
+            }
+            
+            .grid-cols-1.md\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+            
+            .grid-cols-2.md\\:grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem;
+            }
+            
+            .text-4xl.md\\:text-5xl {
+                font-size: 2rem !important;
+            }
+            
+            .text-xl.md\\:text-2xl {
+                font-size: 1.125rem !important;
+            }
+            
+            .timeline-item {
+                padding-left: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .timeline-item h4 {
+                font-size: 1.125rem;
+                line-height: 1.4;
+            }
+            
+            .client-card {
+                min-height: 120px;
+                padding: 1rem;
+            }
+            
+            .client-card h4 {
+                font-size: 0.85rem;
+            }
+            
+            .achievement-card .flex {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.25rem;
+            }
+            
+            .achievement-card .achievement-icon {
+                margin: 0 auto 1rem auto;
+            }
+            
+            .watermark {
+                display: none;
+            }
+            
+            .fixed.bottom-6.right-6 {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .chart-container canvas {
+                max-height: 250px;
+            }
+            
+            .progress-ring {
+                width: 100px !important;
+                height: 100px !important;
+            }
+            
+            .progress-ring svg {
+                width: 100px !important;
+                height: 100px !important;
+            }
+            
+            .grid.grid-cols-2.gap-6 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                justify-items: center;
+            }
+            
+            .flex.flex-wrap.gap-4 {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .bg-white-10-backdrop-blur-sm {
+                padding: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-bg h1 {
+                font-size: 1.75rem !important;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .client-card {
+                min-height: 100px;
+                padding: 0.75rem;
+            }
+            
+            .client-card .bg-blue-100,
+            .client-card .bg-purple-100,
+            .client-card .bg-green-100,
+            .client-card .bg-indigo-100,
+            .client-card .bg-orange-100 {
+                padding: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .client-card h4 {
+                font-size: 0.8rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .client-card p {
+                font-size: 0.75rem;
+            }
+            
+            .timeline-item h4 {
+                font-size: 1rem;
+            }
+            
+            .achievement-card .flex {
+                padding: 1rem;
+            }
+            
+            .achievement-card h4 {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .achievement-card p {
+                font-size: 0.875rem;
+            }
+        }
     </style>
 </head>
-<body class="py-8 px-4">
+<body class="py-4 md:py-8 px-2 md:px-4 mobile-optimized">
     <div class="max-w-5xl mx-auto">
         <!-- Floating Action Button -->
-        <div class="fixed bottom-6 right-6 z-50 no-print">
-            <button onclick="window.print()" class="print-button rounded-full p-4 shadow-lg">
-                <i class="fas fa-print text-xl"></i>
+        <div class="fixed bottom-4 md:bottom-6 right-4 md:right-6 z-50 no-print">
+            <button onclick="window.print()" class="print-button rounded-full p-3 md:p-4 shadow-lg glass-effect">
+                <i class="fas fa-print text-lg md:text-xl"></i>
             </button>
+        </div>
+        
+        <!-- Add a floating navigation menu for better UX -->
+        <div class="fixed top-4 left-4 z-50 no-print hidden md:block">
+            <div class="glass-card rounded-full p-2 flex gap-2">
+                <button onclick="scrollToSection('profile')" class="p-2 rounded-full hover:bg-white/50 transition-all" title="Profile">
+                    <i class="fas fa-user text-gray-700"></i>
+                </button>
+                <button onclick="scrollToSection('experience')" class="p-2 rounded-full hover:bg-white/50 transition-all" title="Experience">
+                    <i class="fas fa-briefcase text-gray-700"></i>
+                </button>
+                <button onclick="scrollToSection('skills')" class="p-2 rounded-full hover:bg-white/50 transition-all" title="Skills">
+                    <i class="fas fa-chart-bar text-gray-700"></i>
+                </button>
+                <button onclick="scrollToSection('education')" class="p-2 rounded-full hover:bg-white/50 transition-all" title="Education">
+                    <i class="fas fa-graduation-cap text-gray-700"></i>
+                </button>
+            </div>
         </div>
         
         <!-- Resume Container -->
@@ -274,62 +618,62 @@
             <div class="watermark watermark-2">PRO</div>
             
             <!-- Header Section -->
-            <div class="header-bg text-white p-8 relative">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                    <div class="relative z-10">
-                        <h1 class="text-4xl md:text-5xl font-bold tracking-tight">SHYAMDEEP MOORKOTH</h1>
-                        <h2 class="text-xl md:text-2xl font-medium mt-2 opacity-90">Senior Marketing & Operations Leader | FMCG & Food Distribution</h2>
+            <div class="header-bg text-white p-6 md:p-8 relative">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+                    <div class="relative z-10 w-full lg:w-auto">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-shadow">SHYAMDEEP MOORKOTH</h1>
+                        <h2 class="text-lg md:text-xl lg:text-2xl font-medium mt-2 opacity-90 leading-relaxed">Senior Marketing & Operations Leader | FMCG & Food Distribution</h2>
                         
                         <!-- Key Stats -->
-                        <div class="flex flex-wrap gap-4 mt-6">
-                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                                <i class="fas fa-chart-line text-xl"></i>
-                                <div>
-                                    <div class="font-bold text-lg">30+</div>
-                                    <div class="text-sm opacity-80">Years Experience</div>
+                        <div class="flex flex-col sm:flex-row flex-wrap gap-3 mt-6">
+                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg flex-1 min-w-0">
+                                <i class="fas fa-chart-line text-lg flex-shrink-0"></i>
+                                <div class="min-w-0">
+                                    <div class="font-bold text-base">30+</div>
+                                    <div class="text-xs opacity-80 truncate">Years Experience</div>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                                <i class="fas fa-globe-asia text-xl"></i>
-                                <div>
-                                    <div class="font-bold text-lg">GCC</div>
-                                    <div class="text-sm opacity-80">Market Expertise</div>
+                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg flex-1 min-w-0">
+                                <i class="fas fa-globe-asia text-lg flex-shrink-0"></i>
+                                <div class="min-w-0">
+                                    <div class="font-bold text-base">GCC</div>
+                                    <div class="text-xs opacity-80 truncate">Market Expertise</div>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                                <i class="fas fa-trophy text-xl"></i>
-                                <div>
-                                    <div class="font-bold text-lg">$5M+</div>
-                                    <div class="text-sm opacity-80">Revenue Growth</div>
+                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg flex-1 min-w-0">
+                                <i class="fas fa-trophy text-lg flex-shrink-0"></i>
+                                <div class="min-w-0">
+                                    <div class="font-bold text-base">$5M+</div>
+                                    <div class="text-xs opacity-80 truncate">Revenue Growth</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-5 w-full md:w-auto relative z-10">
-                        <div class="flex flex-col gap-3">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 w-full lg:w-auto relative z-10">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
                             <div class="flex items-center gap-3">
-                                <div class="bg-white text-blue-600 p-2 rounded-lg">
-                                    <i class="fas fa-phone"></i>
+                                <div class="bg-white text-blue-600 p-2 rounded-lg flex-shrink-0">
+                                    <i class="fas fa-phone text-sm"></i>
                                 </div>
-                                <span>+971 52 328 4119</span>
+                                <span class="text-sm truncate">+971 52 328 4119</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="bg-white text-blue-600 p-2 rounded-lg">
-                                    <i class="fas fa-envelope"></i>
+                                <div class="bg-white text-blue-600 p-2 rounded-lg flex-shrink-0">
+                                    <i class="fas fa-envelope text-sm"></i>
                                 </div>
-                                <span>shyammooorkoth@gmail.com</span>
+                                <span class="text-sm truncate">shyammooorkoth@gmail.com</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="bg-white text-blue-600 p-2 rounded-lg">
-                                    <i class="fas fa-map-marker-alt"></i>
+                                <div class="bg-white text-blue-600 p-2 rounded-lg flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-sm"></i>
                                 </div>
-                                <span>Al Qusais, Dubai, UAE</span>
+                                <span class="text-sm truncate">Al Qusais, Dubai, UAE</span>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="bg-white text-blue-600 p-2 rounded-lg">
-                                    <i class="fab fa-linkedin-in"></i>
+                                <div class="bg-white text-blue-600 p-2 rounded-lg flex-shrink-0">
+                                    <i class="fab fa-linkedin-in text-sm"></i>
                                 </div>
-                                <span>linkedin.com/in/shyamdeep-moorkoth</span>
+                                <span class="text-sm truncate">linkedin.com/in/shyamdeep-moorkoth</span>
                             </div>
                         </div>
                     </div>
@@ -337,99 +681,135 @@
             </div>
             
             <!-- Main Content -->
-            <div class="p-8 relative z-10">
+            <div class="p-4 md:p-6 lg:p-8 relative z-10">
                 <!-- Executive Profile -->
                 <div class="mb-10">
-                    <h3 class="section-title text-2xl mb-5">Executive Profile</h3>
-                    <p class="text-gray-700 leading-relaxed text-lg">
-                        A visionary and results-oriented Senior Marketing & Operations Leader with an exemplary 30-year career driving growth, profitability, and operational excellence within the highly competitive FMCG, food distribution, and agricultural industries. Possesses a deep, holistic understanding of the entire business lifecycle, from pioneering market entry and strategic planning to executing complex supply chain optimizations. Proven track record of expanding market share across the India,GCC (Oman, UAE,Kuwait, Qatar), Yemen, Somaliya, and delivering substantial revenue growth. An expert in full P&L management, international regulatory compliance (ISO 22000, HACCP), and building and mentoring high-performance, cross-functional teams. Recognized for forging powerful C-level B2B partnerships, executing flawless product launches, and cultivating lasting client relationships with major global corporations. 
+                    <h3 class="section-title text-xl md:text-2xl mb-5">Executive Profile</h3>
+                    
+                    <!-- Quick Stats Section -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl text-center border border-blue-200">
+                            <div class="text-2xl md:text-3xl font-bold text-blue-600 mb-1">15+</div>
+                            <div class="text-xs md:text-sm text-blue-800 font-medium">Countries Served</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl text-center border border-purple-200">
+                            <div class="text-2xl md:text-3xl font-bold text-purple-600 mb-1">100+</div>
+                            <div class="text-xs md:text-sm text-purple-800 font-medium">Global Vendors</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl text-center border border-green-200">
+                            <div class="text-2xl md:text-3xl font-bold text-green-600 mb-1">3</div>
+                            <div class="text-xs md:text-sm text-green-800 font-medium">Business Setups</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-xl text-center border border-orange-200">
+                            <div class="text-2xl md:text-3xl font-bold text-orange-600 mb-1">8</div>
+                            <div class="text-xs md:text-sm text-orange-800 font-medium">Export Markets</div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed text-base md:text-lg">
+                        Dynamic Senior Executive with 30+ years of proven excellence in FMCG, food distribution, and agricultural sectors across international markets. Expert in orchestrating multi-million dollar operations, driving 40% YoY revenue growth, and establishing market-leading positions in competitive GCC territories. Specialized in end-to-end business transformation, from greenfield ventures to mature market optimization. Known for building strategic alliances with Fortune 500 companies and government entities while maintaining 98% client retention rates. Fluent in cross-cultural business negotiations with deep understanding of Middle Eastern, Indian, and international trade regulations.
                     </p>
                     
-                    <!-- Expertise Highlights -->
-                    <div class="highlight-box mt-6">
-                        <div class="flex flex-wrap mb-3">
-                            <span class="expertise-tag"><i class="fas fa-building mr-1"></i> New Company Setup</span>
-                            <span class="expertise-tag"><i class="fas fa-rocket mr-1"></i> New Product Launch</span>
-                            <span class="expertise-tag"><i class="fas fa-globe mr-1"></i> Import/Export Operations</span>
+                    <!-- Core Competencies Section -->
+                    <div class="mb-10">
+                        <h3 class="section-title text-xl md:text-2xl mb-5">Core Competencies</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-lg border-l-4 border-blue-500">
+                                <h4 class="font-semibold text-blue-800 text-sm">Strategic Planning</h4>
+                                <p class="text-xs text-gray-600 mt-1">Market Analysis & Expansion</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-3 rounded-lg border-l-4 border-purple-500">
+                                <h4 class="font-semibold text-purple-800 text-sm">P&L Management</h4>
+                                <p class="text-xs text-gray-600 mt-1">$10M+ Budget Control</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-green-50 to-green-100 p-3 rounded-lg border-l-4 border-green-500">
+                                <h4 class="font-semibold text-green-800 text-sm">Team Leadership</h4>
+                                <p class="text-xs text-gray-600 mt-1">150+ Multi-cultural Teams</p>
+                            </div>
+                            <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-3 rounded-lg border-l-4 border-orange-500">
+                                <h4 class="font-semibold text-orange-800 text-sm">Digital Transformation</h4>
+                                <p class="text-xs text-gray-600 mt-1">ERP & CRM Implementation</p>
+                            </div>
                         </div>
-                        <p class="text-gray-800 font-medium">
-                            <i class="fas fa-star text-yellow-500 mr-2"></i>Expertise in establishing new business operations, launching innovative products, and managing complex import/export processes across international markets.
-                        </p>
                     </div>
                 </div>
                 
                 <!-- Key Career Achievements -->
                 <div class="mb-10">
-                    <h3 class="section-title text-2xl mb-5">Key Career Achievements</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <h3 class="section-title text-xl md:text-2xl mb-5">Key Career Achievements</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
                         <div class="achievement-card">
-                            <div class="flex items-start gap-4 p-5">
-                                <div class="achievement-icon p-4 rounded-xl">
-                                    <i class="fas fa-chart-line text-2xl"></i>
+                            <div class="flex flex-col md:flex-row items-start gap-4 p-4 lg:p-5 h-full">
+                                <div class="achievement-icon p-3 lg:p-4 rounded-xl flex-shrink-0">
+                                    <i class="fas fa-chart-line text-xl lg:text-2xl"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800 mb-2">Strategic Revenue Generation</h4>
-                                    <p class="text-gray-700">Consistently delivered substantial growth in overall sales revenue by architecting and executing sophisticated market expansion strategies.</p>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-base lg:text-lg text-gray-800 mb-2">Strategic Revenue Generation</h4>
+                                    <p class="text-gray-700 text-sm lg:text-base">Achieved 300% revenue growth from $2M to $8M within 3 years through strategic market expansion into Kuwait, Qatar, and UAE markets.</p>
+                                    <div class="mt-2 flex gap-2">
+                                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">+300% Growth</span>
+                                        <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">3 New Markets</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="achievement-card">
-                            <div class="flex items-start gap-4 p-5">
-                                <div class="achievement-icon p-4 rounded-xl">
-                                    <i class="fas fa-cogs text-2xl"></i>
+                            <div class="flex flex-col md:flex-row items-start gap-4 p-4 lg:p-5 h-full">
+                                <div class="achievement-icon p-3 lg:p-4 rounded-xl flex-shrink-0">
+                                    <i class="fas fa-cogs text-xl lg:text-2xl"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800 mb-2">Operational Transformation</h4>
-                                    <p class="text-gray-700">Drove transformative improvements in operational efficiency by re-engineering end-to-end procurement workflows.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-card">
-                            <div class="flex items-start gap-4 p-5">
-                                <div class="achievement-icon p-4 rounded-xl">
-                                    <i class="fas fa-rocket text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800 mb-2">Product Launch Excellence</h4>
-                                    <p class="text-gray-700">Masterminded an exceptional track record of successful new product launches leveraging in-depth market intelligence.</p>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-base lg:text-lg text-gray-800 mb-2">Operational Transformation</h4>
+                                    <p class="text-gray-700 text-sm lg:text-base">Drove transformative improvements in operational efficiency by re-engineering end-to-end procurement workflows.</p>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="achievement-card">
-                            <div class="flex items-start gap-4 p-5">
-                                <div class="achievement-icon p-4 rounded-xl">
-                                    <i class="fas fa-truck-loading text-2xl"></i>
+                            <div class="flex flex-col md:flex-row items-start gap-4 p-4 lg:p-5 h-full">
+                                <div class="achievement-icon p-3 lg:p-4 rounded-xl flex-shrink-0">
+                                    <i class="fas fa-rocket text-xl lg:text-2xl"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800 mb-2">Supply Chain & Cost Optimization</h4>
-                                    <p class="text-gray-700">Secured significant, sustainable cost savings across the supply chain through strategic global vendor consolidation.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement-card">
-                            <div class="flex items-start gap-4 p-5">
-                                <div class="achievement-icon p-4 rounded-xl">
-                                    <i class="fas fa-globe-americas text-2xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800 mb-2">International Trade Expertise</h4>
-                                    <p class="text-gray-700">Managed import/export operations across 15+ countries, ensuring regulatory compliance and optimizing cross-border logistics.</p>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-base lg:text-lg text-gray-800 mb-2">Product Launch Excellence</h4>
+                                    <p class="text-gray-700 text-sm lg:text-base">Masterminded an exceptional track record of successful new product launches leveraging in-depth market intelligence.</p>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="achievement-card">
-                            <div class="flex items-start gap-4 p-5">
-                                <div class="achievement-icon p-4 rounded-xl">
-                                    <i class="fas fa-building text-2xl"></i>
+                            <div class="flex flex-col md:flex-row items-start gap-4 p-4 lg:p-5 h-full">
+                                <div class="achievement-icon p-3 lg:p-4 rounded-xl flex-shrink-0">
+                                    <i class="fas fa-truck-loading text-xl lg:text-2xl"></i>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800 mb-2">New Business Setup</h4>
-                                    <p class="text-gray-700">Established 3 new successful business operations from ground up, creating sustainable revenue streams in competitive markets.</p>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-base lg:text-lg text-gray-800 mb-2">Supply Chain & Cost Optimization</h4>
+                                    <p class="text-gray-700 text-sm lg:text-base">Secured significant, sustainable cost savings across the supply chain through strategic global vendor consolidation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="flex flex-col md:flex-row items-start gap-4 p-4 lg:p-5 h-full">
+                                <div class="achievement-icon p-3 lg:p-4 rounded-xl flex-shrink-0">
+                                    <i class="fas fa-globe-americas text-xl lg:text-2xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-base lg:text-lg text-gray-800 mb-2">International Trade Expertise</h4>
+                                    <p class="text-gray-700 text-sm lg:text-base">Managed import/export operations across 15+ countries, ensuring regulatory compliance and optimizing cross-border logistics.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="flex flex-col md:flex-row items-start gap-4 p-4 lg:p-5 h-full">
+                                <div class="achievement-icon p-3 lg:p-4 rounded-xl flex-shrink-0">
+                                    <i class="fas fa-building text-xl lg:text-2xl"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-base lg:text-lg text-gray-800 mb-2">New Business Setup</h4>
+                                    <p class="text-gray-700 text-sm lg:text-base">Established 3 new successful business operations from ground up, creating sustainable revenue streams in competitive markets.</p>
                                 </div>
                             </div>
                         </div>
@@ -438,10 +818,10 @@
                 
                 <!-- Professional Experience -->
                 <div class="mb-10">
-                    <h3 class="section-title text-2xl mb-5">Professional Experience</h3>
+                    <h3 class="section-title text-xl md:text-2xl mb-5">Professional Experience</h3>
                     
                     <div class="timeline-item">
-                        <h4 class="font-bold text-xl text-gray-800 mb-1">Director – Business Operations | Ryzen Intels Mind Pvt Ltd, Kerala, India</h4>
+                        <h4 class="font-bold text-lg md:text-xl text-gray-800 mb-1">Director – Business Operations | Ryzen Intels Mind Pvt Ltd, Kerala, India</h4>
                         <div class="text-blue-600 font-medium mb-3 flex items-center gap-2">
                             <i class="far fa-calendar"></i>
                             <span>October 2023 – Present</span>
@@ -454,7 +834,7 @@
                     </div>
                     
                     <div class="timeline-item">
-                        <h4 class="font-bold text-xl text-gray-800 mb-1">Operations Manager | Ugragandha Foods, Bengaluru, India</h4>
+                        <h4 class="font-bold text-lg md:text-xl text-gray-800 mb-1">Operations Manager | Ugragandha Foods, Bengaluru, India</h4>
                         <div class="text-blue-600 font-medium mb-3 flex items-center gap-2">
                             <i class="far fa-calendar"></i>
                             <span>August 2021 – September 2023</span>
@@ -467,7 +847,7 @@
                     </div>
                     
                     <div class="timeline-item">
-                        <h4 class="font-bold text-xl text-gray-800 mb-1">General Manager | Health Food Marketing & Agricultural Products Co. LLC, Muscat, Oman</h4>
+                        <h4 class="font-bold text-lg md:text-xl text-gray-800 mb-1">General Manager | Health Food Marketing & Agricultural Products Co. LLC, Muscat, Oman</h4>
                         <div class="text-blue-600 font-medium mb-3 flex items-center gap-2">
                             <i class="far fa-calendar"></i>
                             <span>July 2015 – January 2021</span>
@@ -480,7 +860,7 @@
                     </div>
                     
                     <div class="timeline-item">
-                        <h4 class="font-bold text-xl text-gray-800 mb-1">Business Development Manager | Jasmine Oasis Trad. & Cont. Co. LLC, Muscat, Oman</h4>
+                        <h4 class="font-bold text-lg md:text-xl text-gray-800 mb-1">Business Development Manager | Jasmine Oasis Trad. & Cont. Co. LLC, Muscat, Oman</h4>
                         <div class="text-blue-600 font-medium mb-3 flex items-center gap-2">
                             <i class="far fa-calendar"></i>
                             <span>October 2007 – May 2011</span>
@@ -499,42 +879,42 @@
                     <div>
                         <!-- Skills Visualization -->
                         <div class="mb-8">
-                            <h3 class="section-title text-2xl mb-5">Skills & Expertise</h3>
+                            <h3 class="section-title text-xl md:text-2xl mb-5">Skills & Expertise</h3>
                             <div class="chart-container mb-6">
-                                <div class="grid grid-cols-2 gap-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6 mb-6">
                                     <!-- Circular progress bars -->
                                     <div class="flex flex-col items-center">
-                                        <div class="relative w-32 h-32">
-                                            <svg class="progress-ring w-32 h-32" width="120" height="120">
+                                        <div class="relative w-24 h-24 md:w-32 md:h-32">
+                                            <svg class="progress-ring w-24 h-24 md:w-32 md:h-32" width="120" height="120" viewBox="0 0 120 120">
                                                 <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
                                                 <circle class="progress-ring-circle" stroke="url(#skillGradient)" stroke-width="8" stroke-dasharray="326.56" stroke-dashoffset="32.656" fill="transparent" r="52" cx="60" cy="60" style="stroke-dashoffset: 32.656;" data-percent="90"/>
                                             </svg>
                                             <div class="absolute inset-0 flex items-center justify-center">
-                                                <span class="text-2xl font-bold text-gray-800">90%</span>
+                                                <span class="text-xl md:text-2xl font-bold text-gray-800">90%</span>
                                             </div>
                                         </div>
-                                        <span class="mt-3 font-semibold text-gray-700">Strategic Leadership</span>
+                                        <span class="mt-3 font-semibold text-gray-700 text-center text-sm md:text-base">Strategic Leadership</span>
                                     </div>
                                     
                                     <div class="flex flex-col items-center">
-                                        <div class="relative w-32 h-32">
-                                            <svg class="progress-ring w-32 h-32" width="120" height="120">
+                                        <div class="relative w-24 h-24 md:w-32 md:h-32">
+                                            <svg class="progress-ring w-24 h-24 md:w-32 md:h-32" width="120" height="120" viewBox="0 0 120 120">
                                                 <circle class="progress-ring-circle" stroke="#e5e7eb" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
                                                 <circle class="progress-ring-circle" stroke="url(#skillGradient)" stroke-width="8" stroke-dasharray="326.56" stroke-dashoffset="32.656" fill="transparent" r="52" cx="60" cy="60" style="stroke-dashoffset: 19.594;" data-percent="94"/>
                                             </svg>
                                             <div class="absolute inset-0 flex items-center justify-center">
-                                                <span class="text-2xl font-bold text-gray-800">94%</span>
+                                                <span class="text-xl md:text-2xl font-bold text-gray-800">94%</span>
                                             </div>
                                         </div>
-                                        <span class="mt-3 font-semibold text-gray-700">Operations</span>
+                                        <span class="mt-3 font-semibold text-gray-700 text-center text-sm md:text-base">Operations</span>
                                     </div>
                                 </div>
                                 
                                 <div class="mt-6 space-y-4">
                                     <div>
                                         <div class="flex justify-between mb-2">
-                                            <span class="font-medium text-gray-700">Marketing & Sales</span>
-                                            <span class="font-semibold text-blue-600">92%</span>
+                                            <span class="font-medium text-gray-700 text-sm md:text-base">Marketing & Sales</span>
+                                            <span class="font-semibold text-blue-600 text-sm md:text-base">92%</span>
                                         </div>
                                         <div class="skill-bar">
                                             <div class="skill-progress" style="width: 92%"></div>
@@ -542,8 +922,8 @@
                                     </div>
                                     <div>
                                         <div class="flex justify-between mb-2">
-                                            <span class="font-medium text-gray-700">Import/Export Operations</span>
-                                            <span class="font-semibold text-blue-600">95%</span>
+                                            <span class="font-medium text-gray-700 text-sm md:text-base">Import/Export Operations</span>
+                                            <span class="font-semibold text-blue-600 text-sm md:text-base">95%</span>
                                         </div>
                                         <div class="skill-bar">
                                             <div class="skill-progress" style="width: 95%"></div>
@@ -551,8 +931,8 @@
                                     </div>
                                     <div>
                                         <div class="flex justify-between mb-2">
-                                            <span class="font-medium text-gray-700">New Company Setup</span>
-                                            <span class="font-semibold text-blue-600">92%</span>
+                                            <span class="font-medium text-gray-700 text-sm md:text-base">New Company Setup</span>
+                                            <span class="font-semibold text-blue-600 text-sm md:text-base">92%</span>
                                         </div>
                                         <div class="skill-bar">
                                             <div class="skill-progress" style="width: 92%"></div>
@@ -560,60 +940,64 @@
                                     </div>
                                 </div>
                                 
-                                <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#3b82f6; stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#7c3aed; stop-opacity:1" />
-                                </linearGradient>
+                                <svg width="0" height="0">
+                                    <defs>
+                                        <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#3b82f6; stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#7c3aed; stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
                             </div>
                             
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 <div class="bg-blue-50 p-4 rounded-xl">
-                                    <h4 class="font-semibold text-blue-800 mb-2">Operations & Supply Chain</h4>
-                                    <ul class="text-gray-700 space-y-1 text-sm">
+                                    <h4 class="font-semibold text-blue-800 mb-2 text-sm md:text-base">Operations & Supply Chain</h4>
+                                    <ul class="text-gray-700 space-y-1 text-xs md:text-sm">
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <i class="fas fa-check-circle text-green-500 flex-shrink-0"></i>
                                             <span>End-to-End Supply Chain Management</span>
                                         </li>
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <i class="fas fa-check-circle text-green-500 flex-shrink-0"></i>
                                             <span>Procurement & Global Sourcing</span>
                                         </li>
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <i class="fas fa-check-circle text-green-500 flex-shrink-0"></i>
                                             <span>Logistics & Distribution</span>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="bg-purple-50 p-4 rounded-xl">
-                                    <h4 class="font-semibold text-purple-800 mb-2">Marketing & Sales</h4>
-                                    <ul class="text-gray-700 space-y-1 text-sm">
+                                    <h4 class="font-semibold text-purple-800 mb-2 text-sm md:text-base">Marketing & Sales</h4>
+                                    <ul class="text-gray-700 space-y-1 text-xs md:text-sm">
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-purple-500"></i>
+                                            <i class="fas fa-check-circle text-purple-500 flex-shrink-0"></i>
                                             <span>B2B Business Development</span>
                                         </li>
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-purple-500"></i>
+                                            <i class="fas fa-check-circle text-purple-500 flex-shrink-0"></i>
                                             <span>Strategic Account Management</span>
                                         </li>
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-purple-500"></i>
+                                            <i class="fas fa-check-circle text-purple-500 flex-shrink-0"></i>
                                             <span>Brand Positioning</span>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="bg-green-50 p-4 rounded-xl">
-                                    <h4 class="font-semibold text-green-800 mb-2">Business Expansion</h4>
-                                    <ul class="text-gray-700 space-y-1 text-sm">
+                                    <h4 class="font-semibold text-green-800 mb-2 text-sm md:text-base">Business Expansion</h4>
+                                    <ul class="text-gray-700 space-y-1 text-xs md:text-sm">
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <i class="fas fa-check-circle text-green-500 flex-shrink-0"></i>
                                             <span>New Company Setup</span>
                                         </li>
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <i class="fas fa-check-circle text-green-500 flex-shrink-0"></i>
                                             <span>Import/Export Operations</span>
                                         </li>
                                         <li class="flex items-center gap-2">
-                                            <i class="fas fa-check-circle text-green-500"></i>
+                                            <i class="fas fa-check-circle text-green-500 flex-shrink-0"></i>
                                             <span>International Market Entry</span>
                                         </li>
                                     </ul>
@@ -623,41 +1007,41 @@
                         
                         <!-- Education & Certifications -->
                         <div class="mb-8">
-                            <h3 class="section-title text-2xl mb-5">Education & Certifications</h3>
+                            <h3 class="section-title text-xl md:text-2xl mb-5">Education & Certifications</h3>
                             <div class="space-y-4">
-                                <div class="flex items-start gap-4">
-                                    <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
-                                        <i class="fas fa-graduation-cap"></i>
+                                <div class="flex items-start gap-3 md:gap-4">
+                                    <div class="bg-blue-100 text-blue-600 p-2 md:p-3 rounded-xl flex-shrink-0">
+                                        <i class="fas fa-graduation-cap text-sm md:text-base"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-gray-800">Bachelor of Business Administration (BBA)</h4>
-                                        <p class="text-gray-700">Open University System</p>
+                                        <h4 class="font-semibold text-gray-800 text-sm md:text-base">Bachelor of Business Administration (BBA)</h4>
+                                        <p class="text-gray-700 text-xs md:text-sm">Open University System</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="bg-purple-100 text-purple-600 p-3 rounded-xl">
-                                        <i class="fas fa-certificate"></i>
+                                <div class="flex items-start gap-3 md:gap-4">
+                                    <div class="bg-purple-100 text-purple-600 p-2 md:p-3 rounded-xl flex-shrink-0">
+                                        <i class="fas fa-certificate text-sm md:text-base"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-gray-800">ISO 22000:2005 Internal Auditor</h4>
-                                        <p class="text-gray-700">Certified 2019</p>
+                                        <h4 class="font-semibold text-gray-800 text-sm md:text-base">ISO 22000:2005 Internal Auditor</h4>
+                                        <p class="text-gray-700 text-xs md:text-sm">Certified 2019</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="bg-blue-100 text-blue-600 p-3 rounded-xl">
-                                        <i class="fas fa-award"></i>
+                                <div class="flex items-start gap-3 md:gap-4">
+                                    <div class="bg-blue-100 text-blue-600 p-2 md:p-3 rounded-xl flex-shrink-0">
+                                        <i class="fas fa-award text-sm md:text-base"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-gray-800">HACCP Level 2</h4>
-                                        <p class="text-gray-700">Highfield, UK, Certified 2018</p>
+                                        <h4 class="font-semibold text-gray-800 text-sm md:text-base">HACCP Level 2</h4>
+                                        <p class="text-gray-700 text-xs md:text-sm">Highfield, UK, Certified 2018</p>
                                     </div>
                                 </div>
-                                <div class="flex items-start gap-4">
-                                    <div class="bg-purple-100 text-purple-600 p-3 rounded-xl">
-                                        <i class="fas fa-file-invoice-dollar"></i>
+                                <div class="flex items-start gap-3 md:gap-4">
+                                    <div class="bg-purple-100 text-purple-600 p-2 md:p-3 rounded-xl flex-shrink-0">
+                                        <i class="fas fa-file-invoice-dollar text-sm md:text-base"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-semibold text-gray-800">Certification in Taxation & Auditing</h4>
+                                        <h4 class="font-semibold text-gray-800 text-sm md:text-base">Certification in Taxation & Auditing</h4>
                                     </div>
                                 </div>
                             </div>
@@ -668,84 +1052,84 @@
                     <div>
                         <!-- Key Clients & Partnerships -->
                         <div class="mb-8">
-                            <h3 class="section-title text-2xl mb-5">Key Clients & Partnerships</h3>
-                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <h3 class="section-title text-xl md:text-2xl mb-5">Key Clients & Partnerships</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
                                 <div class="client-card">
-                                    <div class="bg-blue-100 text-blue-600 p-4 rounded-full inline-block mb-3">
-                                        <i class="fas fa-building text-3xl"></i>
+                                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full inline-block mb-2">
+                                        <i class="fas fa-building text-2xl"></i>
                                     </div>
                                     <h4 class="font-bold text-gray-800">Royal Airforce Oman</h4>
-                                    <p class="text-gray-600 text-sm mt-1">UK Defence Support INTL</p>
+                                    <p class="text-gray-600 mt-1">UK Defence Support INTL</p>
                                 </div>
                                 <div class="client-card">
-                                    <div class="bg-purple-100 text-purple-600 p-4 rounded-full inline-block mb-3">
-                                        <i class="fas fa-industry text-3xl"></i>
+                                    <div class="bg-purple-100 text-purple-600 p-3 rounded-full inline-block mb-2">
+                                        <i class="fas fa-industry text-2xl"></i>
                                     </div>
                                     <h4 class="font-bold text-gray-800">Larsen & Toubro (L&T)</h4>
                                 </div>
                                 <div class="client-card">
-                                    <div class="bg-blue-100 text-blue-600 p-4 rounded-full inline-block mb-3">
-                                        <i class="fas fa-hard-hat text-3xl"></i>
+                                    <div class="bg-blue-100 text-blue-600 p-3 rounded-full inline-block mb-2">
+                                        <i class="fas fa-hard-hat text-2xl"></i>
                                     </div>
                                     <h4 class="font-bold text-gray-800">Galfar Engineering</h4>
                                 </div>
                                 <div class="client-card">
-                                    <div class="bg-purple-100 text-purple-600 p-4 rounded-full inline-block mb-3">
-                                        <i class="fas fa-utensils text-3xl"></i>
+                                    <div class="bg-purple-100 text-purple-600 p-3 rounded-full inline-block mb-2">
+                                        <i class="fas fa-utensils text-2xl"></i>
                                     </div>
                                     <h4 class="font-bold text-gray-800">United Catering Co.</h4>
                                 </div>
                                 <div class="client-card">
-                                    <div class="bg-green-100 text-green-600 p-4 rounded-full inline-block mb-3">
-                                        <i class="fas fa-plane text-3xl"></i>
+                                    <div class="bg-green-100 text-green-600 p-3 rounded-full inline-block mb-2">
+                                        <i class="fas fa-plane text-2xl"></i>
                                     </div>
                                     <h4 class="font-bold text-gray-800">Enventure Global Technology</h4>
-                                    <p class="text-gray-600 text-sm mt-1">Houston, USA</p>
+                                    <p class="text-gray-600 mt-1">Houston, USA</p>
                                 </div>
                                 <div class="client-card">
-                                    <div class="bg-indigo-100 text-indigo-600 p-4 rounded-full inline-block mb-3">
-                                        <i class="fas fa-utensils text-3xl"></i>
+                                    <div class="bg-indigo-100 text-indigo-600 p-3 rounded-full inline-block mb-2">
+                                        <i class="fas fa-utensils text-2xl"></i>
                                     </div>
                                     <h4 class="font-bold text-gray-800">NewRest</h4>
-                                    <p class="text-gray-600 text-sm mt-1">Global Catering Leader, France</p>
+                                    <p class="text-gray-600 mt-1">Global Catering Leader, France</p>
                                 </div>
                                 <div class="client-card">
-                                    <div class="bg-orange-100 text-orange-600 p-4 rounded-full inline-block mb-3">
-                                        <i class="fas fa-hotel text-3xl"></i>
+                                    <div class="bg-orange-100 text-orange-600 p-3 rounded-full inline-block mb-2">
+                                        <i class="fas fa-hotel text-2xl"></i>
                                     </div>
                                     <h4 class="font-bold text-gray-800">Alilah Salalah</h4>
-                                    <p class="text-gray-600 text-sm mt-1">Singapore-based Resort Group</p>
+                                    <p class="text-gray-600 mt-1">Singapore-based Resort Group</p>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Languages Chart -->
                         <div class="mb-8">
-                            <h3 class="section-title text-2xl mb-5">Languages</h3>
+                            <h3 class="section-title text-xl md:text-2xl mb-5">Languages</h3>
                             <div class="chart-container">
-                                <canvas id="languageChart" height="200"></canvas>
+                                <canvas id="languageChart" height="200" class="max-h-48 md:max-h-none"></canvas>
                             </div>
                         </div>
                         
                         <!-- Additional Information -->
                         <div class="mb-8">
-                            <h3 class="section-title text-2xl mb-5">Additional Information</h3>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-gray-50 p-4 rounded-xl">
-                                    <h4 class="font-semibold text-gray-700 mb-1">Nationality:</h4>
-                                    <p class="font-medium text-gray-800">Indian</p>
+                            <h3 class="section-title text-xl md:text-2xl mb-5">Additional Information</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                                <div class="bg-gray-50 p-3 md:p-4 rounded-xl">
+                                    <h4 class="font-semibold text-gray-700 mb-1 text-sm md:text-base">Nationality:</h4>
+                                    <p class="font-medium text-gray-800 text-sm md:text-base">Indian</p>
                                 </div>
-                                <div class="bg-gray-50 p-4 rounded-xl">
-                                    <h4 class="font-semibold text-gray-700 mb-1">Driving License:</h4>
-                                    <p class="font-medium text-gray-800">India & Oman</p>
+                                <div class="bg-gray-50 p-3 md:p-4 rounded-xl">
+                                    <h4 class="font-semibold text-gray-700 mb-1 text-sm md:text-base">Driving License:</h4>
+                                    <p class="font-medium text-gray-800 text-sm md:text-base">India & Oman</p>
                                 </div>
-                                <div class="bg-gray-50 p-4 rounded-xl">
-                                    <h4 class="font-semibold text-gray-700 mb-1">Technical Skills:</h4>
-                                    <p class="font-medium text-gray-800">MS Office, Tally ERP</p>
+                                <div class="bg-gray-50 p-3 md:p-4 rounded-xl">
+                                    <h4 class="font-semibold text-gray-700 mb-1 text-sm md:text-base">Technical Skills:</h4>
+                                    <p class="font-medium text-gray-800 text-sm md:text-base">MS Office, Tally ERP</p>
                                 </div>
-                                <div class="bg-gray-50 p-4 rounded-xl">
-                                    <h4 class="font-semibold text-gray-700 mb-1">Availability:</h4>
-                                    <p class="font-medium text-gray-800">Immediate</p>
+                                <div class="bg-gray-50 p-3 md:p-4 rounded-xl">
+                                    <h4 class="font-semibold text-gray-700 mb-1 text-sm md:text-base">Availability:</h4>
+                                    <p class="font-medium text-gray-800 text-sm md:text-base">Immediate</p>
                                 </div>
                             </div>
                         </div>
@@ -769,6 +1153,9 @@
     <script>
         // Initialize circular progress bars
         document.addEventListener('DOMContentLoaded', function() {
+            // Check if user prefers reduced motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
             // Animate progress bars
             const progressCircles = document.querySelectorAll('.progress-ring-circle[data-percent]');
             progressCircles.forEach(circle => {
@@ -780,10 +1167,14 @@
                 circle.style.strokeDasharray = `${circumference} ${circumference}`;
                 circle.style.strokeDashoffset = circumference;
                 
-                setTimeout(() => {
-                    circle.style.transition = 'stroke-dashoffset 1s ease-in-out';
+                if (!prefersReducedMotion) {
+                    setTimeout(() => {
+                        circle.style.transition = 'stroke-dashoffset 1s ease-in-out';
+                        circle.style.strokeDashoffset = offset;
+                    }, 300);
+                } else {
                     circle.style.strokeDashoffset = offset;
-                }, 300);
+                }
             });
             
             // Animate skill bars
@@ -792,13 +1183,19 @@
                 const width = bar.style.width;
                 bar.style.width = '0';
                 
-                setTimeout(() => {
+                if (!prefersReducedMotion) {
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 500);
+                } else {
                     bar.style.width = width;
-                }, 500);
+                }
             });
             
-            // Language chart
+            // Language chart with responsive options
             const ctx = document.getElementById('languageChart').getContext('2d');
+            const isMobile = window.innerWidth < 768;
+            
             const languageChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -822,6 +1219,10 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: prefersReducedMotion ? 0 : 1000
+                    },
                     scales: {
                         y: {
                             beginAtZero: true,
@@ -829,6 +1230,9 @@
                             ticks: {
                                 callback: function(value) {
                                     return value + '%';
+                                },
+                                font: {
+                                    size: isMobile ? 10 : 12
                                 }
                             },
                             grid: {
@@ -838,6 +1242,11 @@
                         x: {
                             grid: {
                                 display: false
+                            },
+                            ticks: {
+                                font: {
+                                    size: isMobile ? 10 : 12
+                                }
                             }
                         }
                     },
@@ -849,24 +1258,86 @@
                 }
             });
             
+            // Responsive chart resize
+            window.addEventListener('resize', function() {
+                languageChart.resize();
+            });
+            
             // Simple animation for timeline items when scrolling
             const timelineItems = document.querySelectorAll('.timeline-item');
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
+            if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                timelineItems.forEach(item => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.transition = 'all 0.5s ease';
+                    observer.observe(item);
                 });
-            }, { threshold: 0.1 });
+            }
             
-            timelineItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(20px)';
-                item.style.transition = 'all 0.5s ease';
-                observer.observe(item);
-            });
+            // Add smooth scrolling for print button
+            const printButton = document.querySelector('.print-button');
+            if (printButton) {
+                printButton.addEventListener('click', function() {
+                    // Small delay to ensure smooth animation
+                    setTimeout(() => {
+                        window.print();
+                    }, 100);
+                });
+            }
+            
+            // Add touch-friendly hover effects for mobile
+            if ('ontouchstart' in window) {
+                const hoverElements = document.querySelectorAll('.achievement-card, .client-card, .expertise-tag');
+                hoverElements.forEach(element => {
+                    element.addEventListener('touchstart', function() {
+                        this.classList.add('touch-active');
+                    });
+                    element.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.classList.remove('touch-active');
+                        }, 150);
+                    });
+                });
+            }
+        });
+        
+        // Enhanced JavaScript for smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Enhanced print functionality
+        function enhancedPrint() {
+            // Add print-specific class
+            document.body.classList.add('printing');
+            
+            // Wait for any animations to complete
+            setTimeout(() => {
+                window.print();
+                document.body.classList.remove('printing');
+            }, 300);
+        }
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + P for print
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                enhancedPrint();
+            }
         });
     </script>
 </body>
