@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J. Ramachandra Murthy - Professional CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px 60px 40px;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: white;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        
+        .header .title {
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 25px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            font-size: 14px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-item::before {
+            content: '●';
+            font-size: 8px;
+        }
+        
+        .content {
+            padding: 50px 60px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #2a5298;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .summary {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .highlight-card {
+            background: linear-gradient(135deg, #f6f9fc 0%, #eef2f7 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+        
+        .highlight-card h3 {
+            color: #1e3c72;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .highlight-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid #2a5298;
+        }
+        
+        .skill-category h3 {
+            color: #1e3c72;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            padding: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .skill-category li::before {
+            content: '✓';
+            color: #2a5298;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .experience-item {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        
+        .experience-header h3 {
+            color: #1e3c72;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .experience-date {
+            background: #e8f0fe;
+            color: #1e3c72;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .company-name {
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .responsibilities {
+            list-style: none;
+            margin-top: 10px;
+        }
+        
+        .responsibilities li {
+            padding: 6px 0 6px 25px;
+            position: relative;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .responsibilities li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #2a5298;
+            font-weight: bold;
+        }
+        
+        .education-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2a5298;
+        }
+        
+        .education-item h3 {
+            color: #1e3c72;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .education-item p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .cert-item {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .cert-item h4 {
+            color: #1e3c72;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .cert-item p {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .awards-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .award-item {
+            background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .award-item h4 {
+            color: #f57c00;
+            font-size: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .award-item p {
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .language-badge {
+            background: #2a5298;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+            }
+            .header, .content {
+                padding: 30px 25px;
+            }
+            .highlights-grid, .skills-grid, .certifications-grid, .awards-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>J. RAMACHANDRA MURTHY</h1>
+            <div class="title">Senior Operations & HR Management Professional</div>
+            <div class="contact-info">
+                <div class="contact-item">+91 7306693653</div>
+                <div class="contact-item">jrcmurthy2001@gmail.com</div>
+                <div class="contact-item">Kerala, India</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Professional Profile</h2>
+                <div class="summary">
+                    Accomplished operations and HR professional with 25+ years of progressive leadership experience spanning international markets including UAE, Afghanistan, and Kuwait. Proven track record in scaling operations, optimizing procurement systems, and building high-performing teams. Expert in managing complex projects, implementing strategic initiatives, and driving operational excellence across diverse industries. Known for combining analytical rigor with people-centric leadership to deliver measurable business results.
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Career Highlights</h2>
+                <div class="highlights-grid">
+                    <div class="highlight-card">
+                        <h3>500+</h3>
+                        <p>Employees recruited and onboarded across various roles and international locations</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>15%</h3>
+                        <p>Procurement cost reduction through strategic vendor negotiations and process optimization</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>20%</h3>
+                        <p>Reduction in workplace incidents through comprehensive safety protocol implementation</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>25+</h3>
+                        <p>Years of leadership experience across operations, HR, and business development</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Operations & Strategy</h3>
+                        <ul>
+                            <li>Site Operations Management</li>
+                            <li>Process Optimization</li>
+                            <li>Strategic Planning</li>
+                            <li>Budget Management</li>
+                            <li>Logistics & Warehousing</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>HR & Talent</h3>
+                        <ul>
+                            <li>Talent Acquisition</li>
+                            <li>Employee Relations</li>
+                            <li>Training & Development</li>
+                            <li>Performance Management</li>
+                            <li>Compliance & Policy</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Business Development</h3>
+                        <ul>
+                            <li>Vendor Management</li>
+                            <li>Client Relations</li>
+                            <li>Procurement Strategy</li>
+                            <li>Stakeholder Engagement</li>
+                            <li>Contract Negotiation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Site Admin Manager</h3>
+                        <span class="experience-date">Nov 2022 - Present</span>
+                    </div>
+                    <div class="company-name">ACE Pvt. Ltd. | Hyderabad, India</div>
+                    <ul class="responsibilities">
+                        <li>Direct all site operations ensuring seamless execution of daily activities and project milestones</li>
+                        <li>Manage end-to-end material procurement and vendor relationships maintaining 100% on-time delivery</li>
+                        <li>Implement and oversee labor safety protocols, achieving 20% reduction in workplace incidents</li>
+                        <li>Optimize equipment utilization and maintenance schedules improving operational efficiency by 25%</li>
+                        <li>Prepare comprehensive reports on procurement, production metrics, and site activities for senior leadership</li>
+                        <li>Coordinate with government officials for approvals, clearances, and regulatory compliance</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>HR Officer</h3>
+                        <span class="experience-date">May 2017 - Jun 2019</span>
+                    </div>
+                    <div class="company-name">Emirates Industrial Laboratory | UAE</div>
+                    <ul class="responsibilities">
+                        <li>Spearheaded full-cycle recruitment process, successfully hiring 150+ specialized personnel</li>
+                        <li>Developed and maintained comprehensive applicant tracking database improving hiring efficiency by 30%</li>
+                        <li>Conducted structured interviews and competency assessments ensuring quality talent acquisition</li>
+                        <li>Managed complete employee lifecycle including visa processing, onboarding, and travel arrangements</li>
+                        <li>Ensured 100% compliance with UAE labor laws and conducted regular training sessions</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Talent Development Coordinator</h3>
+                        <span class="experience-date">Oct 2015 - May 2017</span>
+                    </div>
+                    <div class="company-name">Al Rostamani Group | Dubai, UAE</div>
+                    <ul class="responsibilities">
+                        <li>Designed and delivered comprehensive orientation programs for 200+ new employees annually</li>
+                        <li>Coordinated technical and soft skills training programs improving employee performance metrics by 35%</li>
+                        <li>Maintained detailed training records and evaluated program effectiveness through KPI tracking</li>
+                        <li>Supported HR operations including employee relations, performance appraisals, and policy implementation</li>
+                        <li>Organized award-winning corporate events including sports tournaments enhancing team engagement</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Recruitment Officer</h3>
+                        <span class="experience-date">Dec 2013 - Sep 2015</span>
+                    </div>
+                    <div class="company-name">Al Mariah United Group | Abu Dhabi, UAE</div>
+                    <ul class="responsibilities">
+                        <li>Managed end-to-end recruitment for multiple divisions achieving 100% fulfillment of hiring targets</li>
+                        <li>Built and maintained strategic relationships with clients, suppliers, and recruitment partners</li>
+                        <li>Consistently met aggressive recruitment deadlines while maintaining quality standards</li>
+                        <li>Prepared detailed recruitment analytics and reports for executive leadership</li>
+                        <li>Recognized as Best Employee of the Month twice for exceptional performance</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Operations Assistant</h3>
+                        <span class="experience-date">Mar 2007 - Jan 2009</span>
+                    </div>
+                    <div class="company-name">PROLOG Solutions (UK KBR) | Afghanistan</div>
+                    <ul class="responsibilities">
+                        <li>Managed accounts and staff welfare operations for British military camps in high-security environment</li>
+                        <li>Coordinated complex travel documentation and leave rotation schedules for 100+ personnel</li>
+                        <li>Maintained accurate timesheets and personnel records ensuring compliance with military protocols</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Senior Supply Associate</h3>
+                        <span class="experience-date">Oct 2005 - Mar 2007</span>
+                    </div>
+                    <div class="company-name">CSA Ltd. | US Army Base, Kuwait</div>
+                    <ul class="responsibilities">
+                        <li>Directed warehouse and shipping operations supporting US military logistics requirements</li>
+                        <li>Implemented inventory management systems reducing stock discrepancies by 40%</li>
+                        <li>Conducted location surveys and facility inspections maintaining operational readiness standards</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Education & Qualifications</h2>
+                
+                <div class="education-item">
+                    <h3>Bachelor of Business Administration (BBA)</h3>
+                    <p>Rajiv Gandhi Council for Engineering Technology & Management | 2015</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3>Secondary School Certificate (SSC)</h3>
+                    <p>Haryana Board of Open Schooling | 2011</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Professional Certifications & Training</h2>
+                <div class="certifications-grid">
+                    <div class="cert-item">
+                        <h4>Business Communication Skills</h4>
+                        <p>Talent Transformation International, UAE | 2016</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>MS Excel - Intermediate Level</h4>
+                        <p>Etech Global Solutions | 2016</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>Job Evaluation Methodology</h4>
+                        <p>Hay's Group, UAE | 2016</p>
+                    </div>
+                    <div class="cert-item">
+                        <h4>Diploma in Computer Applications (DCA)</h4>
+                        <p>Flashtek Computer, Bangalore | 1996</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Awards & Recognition</h2>
+                <div class="awards-list">
+                    <div class="award-item">
+                        <h4>Best Employee of the Month</h4>
+                        <p>Al Mariah United Group | May 2015</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>Best Employee of the Month</h4>
+                        <p>Al Mariah United Group | February 2015</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>Best Organizer Award</h4>
+                        <p>ARG Group Football Tournament | April 2016</p>
+                    </div>
+                    <div class="award-item">
+                        <h4>Best Coordinator Award</h4>
+                        <p>ARG Group Football Tournament | March 2017</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Language Proficiency</h2>
+                <div class="languages">
+                    <span class="language-badge">English</span>
+                    <span class="language-badge">Hindi</span>
+                    <span class="language-badge">Urdu</span>
+                    <span class="language-badge">Telugu</span>
+                    <span class="language-badge">Tamil</span>
+                    <span class="language-badge">Kannada</span>
+                    <span class="language-badge">Malayalam</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Additional Credentials</h2>
+                <ul class="responsibilities">
+                    <li><strong>Driving Licenses:</strong> UAE (Automatic), India (Light & Heavy Transport/Passenger), US Army Base (Forklift: 6K, 10K, 16K), Runway License (Kandahar Airfield, Afghanistan)</li>
+                    <li><strong>Passport:</strong> Valid until October 2029</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
